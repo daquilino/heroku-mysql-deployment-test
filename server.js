@@ -21,7 +21,7 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 var mysql = require("mysql");
-console.log("TESTING");
+
 // var connection;
 // if(process.env.JAWSBD_URL)
 // {
@@ -50,16 +50,16 @@ console.log("TESTING");
 
 // });
 
-// app.get("/", function(req, res) {
-//   connection.query("SELECT * FROM movies;", function(err, data) {
-//     if (err) {
-//       throw err;
-//     }
+app.get("/", function(req, res) {
+  // connection.query("SELECT * FROM movies;", function(err, data) {
+  //   if (err) {
+  //     throw err;
+  //   }
+    var data = [{ id: 5 , movie: "kubo"}];
+    res.render("index", { movies: data });
 
-//     res.render("index", { movies: data });
-
-//   });
-// });
+  //});
+});
 
 // app.post("/", function(req, res) {
 //   connection.query("INSERT INTO movies (movie) VALUES (?)", [req.body.movie], function(err, result) {
