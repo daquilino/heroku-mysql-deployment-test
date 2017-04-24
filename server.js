@@ -4,7 +4,7 @@ var methodOverride = require("method-override");
 //const PW = require("pw.js");
 
 var app = express();
-var port = 3000;
+var port = process.env.PORT || 3000;;
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(__dirname + "/public"));
@@ -23,7 +23,7 @@ app.set("view engine", "handlebars");
 var mysql = require("mysql");
 
 var connection;
-if(precess.env.JAWSBD_URL)
+if(process.env.JAWSBD_URL)
 {
   connection = mysql.createConnection(precess.enf.JAWSDB_URL);
   console.log("jawsdb connected");
