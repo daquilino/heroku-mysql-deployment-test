@@ -23,7 +23,7 @@ app.set("view engine", "handlebars");
 var mysql = require("mysql");
 
 var connection;
-if(process.env.JAWSBD_URL)
+if(process.env.JAWSDB_URL)
 {
   connection = mysql.createConnection(precess.enf.JAWSDB_URL);
   console.log("jawsdb connected");
@@ -41,58 +41,58 @@ else
 
 
 
-// connection.connect(function(err) {
-//   if (err) {
-//     console.error("error connecting: " + err.stack);
-//     return;
-//   }
+connection.connect(function(err) {
+  if (err) {
+    console.error("error connecting: " + err.stack);
+    return;
+  }
 
-//   console.log("connected as id " + connection.threadId);
+  console.log("connected as id " + connection.threadId);
 
-// });
-
-app.get("/", function(req, res) {
-  // connection.query("SELECT * FROM movies;", function(err, data) {
-  //   if (err) {
-  //     throw err;
-  //   }
-    var data = [{ id: 5 , movie: "kubo"}];
-    res.render("index", { movies: data });
-
-  //});
 });
 
-// app.post("/", function(req, res) {
-//   connection.query("INSERT INTO movies (movie) VALUES (?)", [req.body.movie], function(err, result) {
-//     if (err) {
-//       throw err;
-//     }
+app.get("/", function(req, res) {
+  connection.query("SELECT * FROM movies;", function(err, data) {
+    if (err) {
+      throw err;
+    }
 
-//     res.redirect("/");
-//   });
-// });
+    res.render("index", { movies: data });
 
-// app.delete("/:id", function(req, res) {
-//   connection.query("DELETE FROM movies WHERE id = ?", [req.params.id], function(err, result) {
-//     if (err) {
-//       throw err;
-//     }
+  });
+});
 
-//     res.redirect("/");
-//   });
-// });
+app.post("/", function(req, res) {
+  connection.query("INSERT INTO movies (movie) VALUES (?)", [req.body.movie], function(err, result) {
+    if (err) {
+      throw err;
+    }
 
-// app.put("/", function(req, res) {
+    res.redirect("/");
+  });
+});
 
-//   connection.query("UPDATE movies SET movie = ? WHERE id = ?", [
-//     req.body.movie, req.body.id
-//   ], function(err, result) {
-//     if (err) {
-//       throw err;
-//     }
+app.delete("/:id", function(req, res) {
+  connection.query("DELETE FROM movies WHERE id = ?", [req.params.id], function(err, result) {
+    if (err) {
+      throw err;
+    }
 
-//     res.redirect("/");
-//   });
-// });
+    res.redirect("/");
+  });
+});
+
+app.put("/", function(req, res) {
+
+  connection.query("UPDATE movies SET movie = ? WHERE id = ?", [
+    req.body.movie, req.body.id
+  ], function(err, result) {
+    if (err) {
+      throw err;
+    }
+
+    res.redirect("/");
+  });
+});
 
 app.listen(port);
