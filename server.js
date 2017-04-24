@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
-const PW = require("./pw.js");
+//const PW = require("pw.js");
 
 var app = express();
 var port = 3000;
@@ -22,12 +22,20 @@ app.set("view engine", "handlebars");
 
 var mysql = require("mysql");
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: PW.pw,
-  database: "movie_planner_db"
-});
+var connection;
+if(precess.env.JAWSBD_URL)
+{
+  connection = mysql.createConnection(precess.enf.JAWSDB_URL);
+} 
+else
+{ 
+  connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "require ps.js for password",
+    database: "movie_planner_db"
+  });
+}
 
 connection.connect(function(err) {
   if (err) {
