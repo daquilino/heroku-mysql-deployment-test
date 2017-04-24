@@ -22,23 +22,24 @@ app.set("view engine", "handlebars");
 
 var mysql = require("mysql");
 
-// var connection;
-// if(process.env.JAWSBD_URL)
-// {
-//   connection = mysql.createConnection(precess.enf.JAWSDB_URL);
-//   console.log("jawsdb connected");
-// } 
-// else
-// { 
-//   connection = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "require ps.js for password",
-//     database: "movie_planner_db"
-//   });
-// }
+var connection;
+if(process.env.JAWSBD_URL)
+{
+  connection = mysql.createConnection(precess.enf.JAWSDB_URL);
+  console.log("jawsdb connected");
+} 
+else
+{ 
+  connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "require ps.js for password",
+    database: "movie_planner_db"
+  });
+  console.log("jawsdb NOT connected");
+}
 
- console.log("hello");
+
 
 // connection.connect(function(err) {
 //   if (err) {
