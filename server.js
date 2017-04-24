@@ -26,6 +26,7 @@ var connection;
 if(precess.env.JAWSBD_URL)
 {
   connection = mysql.createConnection(precess.enf.JAWSDB_URL);
+  console.log("jawsdb connected");
 } 
 else
 { 
