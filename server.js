@@ -38,7 +38,7 @@ var mysql = require("mysql");
 //   });
 // }
 
-// console.log("hello");
+ console.log("hello");
 
 // connection.connect(function(err) {
 //   if (err) {
